@@ -19,9 +19,17 @@
  	<link href="css/plugins/bootstrap-table/bootstrap-table.min.css" rel="stylesheet">
     <link href="css/animate.css" rel="stylesheet">
     <link href="css/style.css?v=4.1.0" rel="stylesheet">
+    <link href="css/plugins/blueimp/css/blueimp-gallery.min.css" rel="stylesheet">
+	<style>
+        .lightBoxGallery img {
+            margin: 5px;
+            width: 160px;
+        }
+    </style>
 
 	<script src="js/angular.js"></script>
 	<script src="lib/catering/catering-list.js"></script>
+	
 </head>
 
 <body class="gray-bg" ng-controller="cateringlistctrl">
@@ -51,7 +59,7 @@
                             </div>
                         </div>
                         <div class="ibox-content">
-                        	<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal1">添加</button>
+                        	<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal1" ng-click="goadd();">添加</button>
                         	<div class="modal inmodal" id="myModal1" tabindex="-1" role="dialog" aria-hidden="true">
                                 <div class="modal-dialog">
                                 	<div class="modal-content animated bounceInRight">
@@ -61,10 +69,32 @@
                                         <h4 class="modal-title">添加信息</h4>
                                         </div>
                                         <div class="modal-body">
-                              				<div class="form-group">
-                              					<label>菜品类型名称</label> 
-                              					<input type="text" placeholder="请输入菜品信息" class="form-control" id="aname" ng-model="aname">
-                              				</div>
+                                    		
+										    <div class="form-group">
+										        <label class="control-label">菜品名称：</label>
+										        <input type="text" name="" class="form-control" placeholder="" ng-model="acateringname">
+										    </div>
+										    <div class="form-group">
+										        <label class="control-label">数量：</label>
+										        <input type="text" name="" class="form-control" placeholder="" ng-model="anum">
+										    </div>
+										    <div class="form-group">
+										        <label class=" control-label">价格：</label>
+										        <input type="text" name="" class="form-control" placeholder="" ng-model="aprice">
+										    </div>
+											 <div class="form-group">
+										        <label class="control-label">菜品描述：</label>
+										        <input type="text" name="" class="form-control" placeholder="" ng-model="ainfo">
+										    </div>
+											
+										    <div class="form-group">
+										        <label class="control-label">菜品类型：</label>								      
+										            <select class="form-control" name="" ng-model="accseq">
+										            	<option value="{{c.seq}}" ng-repeat="c in classlist">{{c.name}}</option>
+										            </select>
+										    </div>
+										    
+                              
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-white" data-dismiss="modal">关闭</button>
@@ -95,13 +125,24 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr class="gradeX" ng-repeat="c in classlist">
+                                        <tr class="gradeX" ng-repeat="c in cateringlist">
                                             <td>{{c.seq}}</td>
                                            
+                                            <td class="center">{{c.cateringname}}</td>
                                             <td class="center">{{c.name}}</td>
+                                            <td class="center">{{c.num}}</td>
+                                            <td class="center">{{c.price}}</td>
+                                            <td class="center">{{c.info}}</td>
+                                            <td class="center">
+                                            	<div class="lightBoxGallery">
+						                            <a href="{{c.picturePath}}" title="图片" data-gallery=""><img src="{{c.picturePath}}"></a>
+						                        </div>
+                                            </td>
+                                            <td class="center">{{c.username}}</td>
                                             <td class="center">
                                             	<div>
-                                            	<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" ng-click="goupdate(c.seq,c.name);">
+                                                <button type="button" class="btn btn-info" ng-click="gotoPicture(c.seq);" >图片管理</button>
+                                            	<button type="button" class="btn btn-warning" data-toggle="modal" data-target="#myModal" ng-click="goupdate(c.seq,c.cateringname,c.ccseq,c.num,c.price,c.info);">
 					                              	 修改
 					                            </button>
 					                            <button type="button" class="btn btn-danger" ng-click="del(c.seq);" >删除</button>
@@ -115,9 +156,32 @@
 					                                        <h4 class="modal-title">修改信息</h4>
 					                                        </div>
 					                                        <div class="modal-body">
+					                              				
 					                              				<div class="form-group">
-					                              					<label>菜品类型名称</label> 
-					                              					<input type="text" placeholder="请输入菜品信息" class="form-control" id="ename" ng-model="ename" >
+															        <label class="control-label">菜品名称：</label>
+															        <input type="text" name="" class="form-control" placeholder="" ng-model="ecateringname">
+															    </div>
+															    <div class="form-group">
+															        <label class="control-label">数量：</label>
+															        <input type="text" name="" class="form-control" placeholder="" ng-model="num">
+															    </div>
+															    <div class="form-group">
+															        <label class=" control-label">价格：</label>
+															        <input type="text" name="" class="form-control" placeholder="" ng-model="eprice">
+															    </div>
+																 <div class="form-group">
+															        <label class="control-label">菜品描述：</label>
+															        <input type="text" name="" class="form-control" placeholder="" ng-model="einfo">
+															    </div>
+																
+															    <div class="form-group">
+															        <label class="control-label">菜品类型：</label>								      
+															            <select class="form-control" name="" ng-model="eccseq">
+															            	<option value="{{c.seq}}" ng-repeat="c in classlist">{{c.name}}</option>
+															            </select>
+														    	</div>
+														    	
+														    	<div class="form-group">
 					                              					<input type="hidden" placeholder="请输入菜品信息" class="form-control" id="seq" ng-model="seq" >
 					                              				</div>
 					                                        </div>
@@ -134,7 +198,7 @@
                                     </tbody>
                                     <tfoot>
                                         <tr>
-                                            <td colspan="5">
+                                            <td colspan="9">
                                                 <ul class="pagination pull-right"></ul>
                                             </td>
                                         </tr>
@@ -157,11 +221,16 @@
     <script src="js/plugins/bootstrap-table/bootstrap-table.min.js"></script>
     <script src="js/plugins/bootstrap-table/bootstrap-table-mobile.min.js"></script>
     <script src="js/plugins/bootstrap-table/locale/bootstrap-table-zh-CN.min.js"></script>
+    <!-- blueimp gallery -->
+    <script src="js/plugins/blueimp/jquery.blueimp-gallery.min.js"></script>
+
+
+   
     <script>
         $(document).ready(function() {
 
             $('.footable').footable();
-
+ 			
         });
 
     </script>
