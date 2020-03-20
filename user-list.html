@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html ng-app="userlist">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!--360浏览器优先以webkit内核解析-->
+
+
+    <title>餐饮后台管理系统</title>
+    <meta name="keywords" content="H+后台主题,后台bootstrap框架,会员中心主题,后台HTML,响应式后台">
+    <meta name="description" content="H+是一个完全响应式，基于Bootstrap3最新版本开发的扁平化主题，她采用了主流的左右两栏式布局，使用了Html5+CSS3等现代技术">
+
+    <link rel="shortcut icon" href="favicon.ico"> <link href="css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+    <link href="css/font-awesome.css?v=4.4.0" rel="stylesheet">
+    <link href="css/plugins/footable/footable.core.css" rel="stylesheet">
+ 	<link href="css/plugins/bootstrap-table/bootstrap-table.min.css" rel="stylesheet">
+    <link href="css/animate.css" rel="stylesheet">
+    <link href="css/style.css?v=4.1.0" rel="stylesheet">
+    <link href="css/plugins/blueimp/css/blueimp-gallery.min.css" rel="stylesheet">
+	<style>
+        .lightBoxGallery img {
+            margin: 5px;
+            width: 160px;
+        }
+    </style>
+
+	<script src="js/angular.js"></script>
+	<script src="lib/user/user-list.js"></script>
+	
+</head>
+
+<body class="gray-bg" ng-controller="userlistctr">
+    <div class="wrapper wrapper-content animated fadeInRight">
+    	<div class="row">
+				<div class="col-sm-12">
+                    <div class="ibox float-e-margins">
+                        <div class="ibox-title">
+                            <h5>菜品列表</h5>
+
+                            <div class="ibox-tools">
+                                <a class="collapse-link">
+                                    <i class="fa fa-chevron-up"></i>
+                                </a>
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                    <i class="fa fa-wrench"></i>
+                                </a>
+                                <ul class="dropdown-menu dropdown-user">
+                                    <li><a href="#">选项 01</a>
+                                    </li>
+                                    <li><a href="#">选项 02</a>
+                                    </li>
+                                </ul>
+                                <a class="close-link">
+                                    <i class="fa fa-times"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="ibox-content">
+                        	<!----><!--<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal1" ng-click="goadd();">添加</button>-->
+                        	<div class="modal inmodal" id="myModal1" tabindex="-1" role="dialog" aria-hidden="true">
+                                <div class="modal-dialog">
+                                	<div class="modal-content animated bounceInRight">
+                                   		<div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">关闭</span>
+                                        </button>
+                                        <h4 class="modal-title">添加信息</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                    		
+										    <div class="form-group">
+										        <label class="control-label">用户名：</label>
+										        <input type="text" name="" class="form-control" placeholder="" ng-model="acateringname">
+										    </div>
+										    <div class="form-group">
+										        <label class="control-label">手机号：</label>
+										        <input type="text" name="" class="form-control" placeholder="" ng-model="anum">
+										    </div>
+										    <div class="form-group">
+										        <label class=" control-label">邮箱：</label>
+										        <input type="text" name="" class="form-control" placeholder="" ng-model="aprice">
+										    </div>
+											 <div class="form-group">
+										        <label class="control-label">积分：</label>
+										        <input type="text" name="" class="form-control" placeholder="" ng-model="ainfo">
+										    </div>
+                                            <div class="form-group">
+                                                <label class="control-label">会员等级：</label>
+                                                <input type="text" name="" class="form-control" placeholder="" ng-model="ainfo">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <input type="text" class="form-control input-sm m-b-xs" id="filter"
+                                   placeholder="搜索表格...">
+							<!--
+                            	作者：
+                            	时间：2020-02-16
+                            	描述： data-page-size  这个属性控制每页个数  
+                            -->
+                            <table class="footable table table-stripped" data-page-size="8" data-filter=#filter>
+                                <thead>
+                                        <tr>
+                                            <th>id</th>
+                                            <th>用户名</th>
+                                            <th>手机号</th>
+                                            <th>积分</th>
+                                            <th>会员等级</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="gradeX" ng-repeat="c in userInfo">
+                                            <td>{{c.seq}}</td>
+                                            <td class="center">{{c.username}}</td>
+                                            <td class="center">{{c.tel}}</td>
+                                            <td class="center">{{c.account}}</td>
+                                            <td class="center">{{c.member.description}}</td>
+                                        </tr>
+                                        
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <td colspan="9">
+                                                <ul class="pagination pull-right"></ul>
+                                            </td>
+                                        </tr>
+                                    </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+	 </div>
+
+    <!-- 全局js -->
+    <script src="js/jquery.min.js?v=2.1.4"></script>
+    <script src="js/bootstrap.min.js?v=3.3.6"></script>
+    <script src="js/plugins/footable/footable.all.min.js"></script>
+
+    <!-- 自定义js -->
+    <script src="js/content.js?v=1.0.0"></script>
+    <!-- Bootstrap table -->
+    <script src="js/plugins/bootstrap-table/bootstrap-table.min.js"></script>
+    <script src="js/plugins/bootstrap-table/bootstrap-table-mobile.min.js"></script>
+    <script src="js/plugins/bootstrap-table/locale/bootstrap-table-zh-CN.min.js"></script>
+    <!-- blueimp gallery -->
+    <script src="js/plugins/blueimp/jquery.blueimp-gallery.min.js"></script>
+
+
+   
+    <script>
+        $(document).ready(function() {
+
+            $('.footable').footable();
+ 			
+        });
+
+    </script>
+
+   
+    
+
+</body>
+
+</html>
