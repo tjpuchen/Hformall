@@ -59,7 +59,7 @@
                     </div>
                 </div>
                 <div class="ibox-content">
-                    <!--  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal1" ng-click="goadd();">添加</button>-->
+                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal1" ng-click="goadd();">添加</button>
                     <div class="modal inmodal" id="myModal1" tabindex="-1" role="dialog" aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content animated bounceInRight">
@@ -71,19 +71,9 @@
                                 <div class="modal-body">
 
                                     <div class="form-group">
-                                        <label class="control-label">会员等级：</label>
-                                        <input type="text" name="" class="form-control" placeholder="" ng-model="username">
+                                        <label class="control-label">公告内容：</label>
+                                        <input type="text" name="" class="form-control" placeholder="" ng-model="message">
                                     </div>
-                                    <div class="form-group">
-                                        <label class="control-label">折扣：</label>
-                                        <input type="text" name="" class="form-control" placeholder="" ng-model="password">
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="control-label">积分要求：</label>
-                                        <input type="text" name="" class="form-control" placeholder="" ng-model="tel">
-                                    </div>
-
-
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-white" data-dismiss="modal">关闭</button>
@@ -103,24 +93,24 @@
                         <thead>
                         <tr>
                             <th>id</th>
-                            <th>会员等级</th>
-                            <th>折扣</th>
-                            <th>积分要求</th>
+                            <th>公告内容</th>
+                            <th>公告日期</th>
                             <th>操作</th>
                         </tr>
                         </thead>
                         <tbody>
-                        <tr class="gradeX" ng-repeat="c in memberInfo">
+                        <tr class="gradeX" ng-repeat="c in noticeInfo">
                             <td>{{c.seq}}</td>
-                            <td class="center">{{c.description}}</td>
                             <td class="center">
-                                {{c.discount}}
-                            <td class="center">{{c.remittance}}</td>
+                                {{c.message}}
+                            <td class="center">{{c.time}}</td>
                             <td class="center">
                                 <div>
-                                    <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#myModal" ng-click="goupdate(c.seq,c.description,c.discount,c.remittance);">
+                                    <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#myModal" ng-click="goupdate(c.seq,c.message);">
+
                                         修改
                                     </button>
+                                    <button type="button" class="btn btn-danger" ng-click="delete(c.seq);" >删除</button>
                                 </div>
                                 <div class="modal inmodal" id="myModal" tabindex="-1" role="dialog" aria-hidden="true">
                                     <div class="modal-dialog">
@@ -132,16 +122,8 @@
                                             </div>
                                             <div class="modal-body">
                                                 <div class="form-group">
-                                                    <label class="control-label">会员等级：</label>
-                                                    <input type="text" name="" class="form-control" placeholder="" value="{{description}}" ng-model="description">
-                                                </div>
-                                                <div class="form-group">
-                                                    <label class="control-label">折扣：</label>
-                                                    <input type="text" name="" class="form-control" placeholder="" value="{{discount}}" ng-model="discount">
-                                                </div>
-                                                <div class="form-group">
-                                                    <label class="control-label">积分要求：</label>
-                                                    <input type="text" name="" class="form-control" placeholder="" value="{{remittance}}" ng-model="remittance">
+                                                    <label class="control-label">公告内容：</label>
+                                                    <input type="text" name="" class="form-control" placeholder="" value="{{message}}" ng-model="message">
                                                 </div>
 
                                             </div>
