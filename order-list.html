@@ -83,7 +83,7 @@
                                             <td class="center">{{o.adress}}</td>
                                             <td class="center">
                                             	<div>
-                                            	<button type="button" class="btn btn-primary" ng-click="updataStatus(o.seq);" >配送</button>
+                                            	<button ng-if="o.status == '正在制作'" type="button" class="btn btn-primary" ng-click="updataStatus(o.seq);" >配送</button>
                                             	<button type="button" class="btn btn-info" ng-click="gotoInfo(o.seq);" >查看明细</button>
                                             	<button type="button" class="btn btn-warning" data-toggle="modal" data-target="#myModal" ng-click="goupdate(o.seq,o.adress);">
 					                              	 修改
